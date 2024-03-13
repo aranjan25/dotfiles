@@ -77,13 +77,33 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-vi-mode)
+
+# pre-source plugin configs
+
+# zsh-syntax-highlighting pre-source config
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#9e9e9e"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
+
+# zsh-vi-mode pre-source config
+ZVM_VI_ESCAPE_BINDKEY="jk"
 
 source $ZSH/oh-my-zsh.sh
+
+# post-source plugin configs
+
+# zsh-syntax-highlighting post-source config
+zvm_bindkey viins '^ ' autosuggest-accept
+
+# zsh-vi-mode post-source config
+ZVM_INSERT_MODE_CURSOR="$ZVM_CURSOR_UNDERLINE"
+
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH:$HOME/.local/bin"
+export FORTICLIENT_PATH="$HOME/Programs/fortisslvpn"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
